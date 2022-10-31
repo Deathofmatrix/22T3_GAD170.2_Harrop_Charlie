@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace FishingGame
@@ -22,7 +23,7 @@ namespace FishingGame
             return species;
         }
 
-        public float GetLenth()
+        public float GetLength()
         {
             return length;
         }
@@ -32,9 +33,9 @@ namespace FishingGame
             return dollarValue;
         }
 
-        public bool IsFishEaten()
+        public void IsFishEaten()
         {
-            return true;
+            Destroy(gameObject);
         }
 
     }
