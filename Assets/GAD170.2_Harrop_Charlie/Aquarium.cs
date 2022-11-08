@@ -19,32 +19,36 @@ namespace FishingGame
         [Header("Collections")]
         [SerializeField] private string[] fishTypes = new string[8] { "Tilipia", "Salmon", "Walleye", "Shad", "Lingcod", "Lionfish", "Albacore", "Chub" };
         [SerializeField] private List<Fish> allFish;
-        private Fish newestFish;
 
         [Header("Variables")]
         private int totalScore;
         private int turnTimer;
-
+        private Fish newestFish;
 
         private void Start()
         {
             CreateFish();
-
         }
 
+        //Creates the instantiation of the fish class
         private void CreateFish()
         {
-
+            //sets stats and instantiates Fish
             fishPrefab.SetStats(fishTypes[Random.Range(0, 8)], Random.Range(10.0f, 100.0f), Random.Range(20, 200));
             newestFish = Instantiate(fishPrefab, transform);
-            textDisplay.ChangeText("Species:" + newestFish.GetSpecies() + "\nLength:" + newestFish.GetLength() + "cm\nPrice:$" + newestFish.GetDollarValue());
+
+            //sets the name of the fish
             newestFish.name = "Species:" + newestFish.GetSpecies() + " Length:" + newestFish.GetLength() + "cm Price:$" + newestFish.GetDollarValue();
+
+            //displays the text on screen as well as displays in the console
+            textDisplay.ChangeText("Species:" + newestFish.GetSpecies() + "\nLength:" + newestFish.GetLength() + "cm\nPrice:$" + newestFish.GetDollarValue());
             Debug.Log("Species:" + newestFish.GetSpecies() + " Length:" + newestFish.GetLength() + "cm Price:$" + newestFish.GetDollarValue());
         }
 
         //Connected to Keep Fish button
         public void KeepFish()
         {
+            //checks if any fish are eaten in the aquarium as they are caught
             foreach (Fish fish in allFish.ToList())
             {
                 if (newestFish.GetLength()/2 > fish.GetLength())
@@ -55,8 +59,11 @@ namespace FishingGame
                     textDisplay.AddText("Fish Eaten");
                 }
             }
+            //adds new fish to aquarium
             allFish.Add(newestFish);
+            //increases total score
             totalScore += newestFish.GetDollarValue();
+
             Debug.Log("$" + totalScore);
 
             NewTurn();
