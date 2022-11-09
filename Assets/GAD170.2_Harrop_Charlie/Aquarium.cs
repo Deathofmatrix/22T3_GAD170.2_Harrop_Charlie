@@ -13,6 +13,7 @@ namespace FishingGame
         [SerializeField] private Fish fishPrefab;
         [SerializeField] private TextDisplay textDisplay;
         [SerializeField] private TextDisplay aquariumTextDisplay;
+        [SerializeField] private TextDisplay eatenTextDisplay;
         [SerializeField] private GameObject restartButton;
         [SerializeField] private GameObject quitButton;
 
@@ -22,12 +23,13 @@ namespace FishingGame
 
         [Header("Variables")]
         private int totalScore;
-        private int turnTimer;
+        private int turnCounter;
         private Fish newestFish;
+        private int maxTurn = 10;
 
         private void Start()
         {
-            CreateFish();
+            NewGame();
         }
 
         //Creates the instantiation of the fish class
@@ -48,6 +50,9 @@ namespace FishingGame
         //Connected to Keep Fish button
         public void KeepFish()
         {
+            //clear fish eaten
+            eatenTextDisplay.ClearText();
+
             //checks if any fish are eaten in the aquarium as they are caught
             foreach (Fish fish in allFish.ToList())
             {
@@ -56,7 +61,7 @@ namespace FishingGame
                     totalScore -= fish.GetDollarValue();
                     Destroy(fish.gameObject);
                     allFish.Remove(fish);
-                    textDisplay.AddText("Fish Eaten");
+                    eatenTextDisplay.AddText("Fish has been eaten");
                 }
             }
             //adds new fish to aquarium
@@ -82,7 +87,7 @@ namespace FishingGame
         {
             //displays the fish that are currently in your aquarium
             aquariumTextDisplay.ClearText();
-            aquariumTextDisplay.AddText("Total Score:$" + totalScore + "\n");
+            aquariumTextDisplay.AddText("Aquarium Value:$" + totalScore + "\n");
 
             //displays the fish name (stats) in the aquarium from the allfish list
             foreach (Fish fish in allFish)
@@ -91,8 +96,8 @@ namespace FishingGame
             }
 
             //turn system
-            turnTimer += 1;
-            if (turnTimer == 10)
+            turnCounter += 1;
+            if (turnCounter == maxTurn)
             {
                 GameOver();
             }
@@ -100,14 +105,12 @@ namespace FishingGame
             {
                 CreateFish();
             }
-                
-            
         }
 
         public void GameOver()
         {
             //displays total score
-            textDisplay.ChangeText("Your total score:\n" + "$" + totalScore);
+            textDisplay.ChangeText("Your Aquarium Value:\n" + "$" + totalScore);
 
             //activates the game over buttons
             restartButton.SetActive(true);
@@ -127,7 +130,7 @@ namespace FishingGame
             textDisplay.ClearText();
 
             //resets the turn timer
-            turnTimer = 0;
+            turnCounter = 0;
 
             //resets score
             totalScore = 0; 
