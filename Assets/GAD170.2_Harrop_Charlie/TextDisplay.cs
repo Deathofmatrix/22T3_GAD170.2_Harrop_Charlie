@@ -14,17 +14,17 @@ namespace FishingGame
             textFieldUI.text += textToAdd + "\n";
         }
 
-        public void ChangeText(string textToAdd)
+        public void ChangeText(string textToChange)
         {
-            textFieldUI.text = textToAdd;
+            textFieldUI.text = textToChange;
         }
 
         public void ClearText()
         {
-            textFieldUI.text = " ";
+            textFieldUI.text = "";
         }
 
-        public void Problems(string errorReport)
+        public void Problems()
         {
             ClearText();
             AddText("Something has gone wrong!!");

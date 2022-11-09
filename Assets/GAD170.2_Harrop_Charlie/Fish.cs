@@ -11,11 +11,11 @@ namespace FishingGame
         [SerializeField] private float length;
         [SerializeField] private int dollarValue;
 
-        public void SetStats(string newSpecies, float newLength, int newdollarValue)
+        public void SetStats(string newSpecies, float newLength, int newDollarValue)
         {
             species = newSpecies;
             length = newLength;
-            dollarValue = newdollarValue;
+            dollarValue = newDollarValue;
         }
 
         public string GetSpecies()

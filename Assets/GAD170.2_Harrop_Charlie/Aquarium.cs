@@ -64,8 +64,10 @@ namespace FishingGame
                     eatenTextDisplay.AddText("Fish has been eaten");
                 }
             }
+
             //adds new fish to aquarium
             allFish.Add(newestFish);
+
             //increases total score
             totalScore += newestFish.GetDollarValue();
 
@@ -85,7 +87,7 @@ namespace FishingGame
 
         public void NewTurn()
         {
-            //displays the fish that are currently in your aquarium
+            //displays the total score
             aquariumTextDisplay.ClearText();
             aquariumTextDisplay.AddText("Aquarium Value:$" + totalScore + "\n");
 
