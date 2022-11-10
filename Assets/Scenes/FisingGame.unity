@@ -1545,7 +1545,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1117805325}
         m_TargetAssemblyTypeName: FishingGame.Aquarium, Assembly-CSharp
-        m_MethodName: ThrowBack
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
