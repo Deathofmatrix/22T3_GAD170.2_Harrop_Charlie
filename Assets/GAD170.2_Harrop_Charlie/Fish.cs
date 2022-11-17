@@ -37,7 +37,6 @@ namespace FishingGame
         {
             Destroy(gameObject);
         }
-
     }
 }
 
